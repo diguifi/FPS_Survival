@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 moveDirection;
     private float verticalVelocity;
     private float gravity = 20f;
-    public float speed = 5f;
+    public float speed = 4f;
     public float jumpForce = 10f;
 
     void Awake()
