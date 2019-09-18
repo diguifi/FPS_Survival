@@ -14,10 +14,12 @@ public class PlayerSprintCrouch : MonoBehaviour
     public float sprintSpeed = 8f;
     public float crouchSpeed = 1.5f;
 
+    private PlayerFootSteps playerFootSteps;
     
     void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
+        playerFootSteps = GetComponentInChildren<PlayerFootSteps>();
         povTransform = transform.GetChild(0);
     }
 
@@ -33,10 +35,14 @@ public class PlayerSprintCrouch : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.LeftShift) && !isCrouching)
         {
             playerMovement.speed = sprintSpeed;
+
+            playerFootSteps.currentMovement = MovementTypes.Sprinting;
         }
         if(Input.GetKeyUp(KeyCode.LeftShift) && !isCrouching)
         {
             playerMovement.speed = moveSpeed;
+
+            playerFootSteps.currentMovement = MovementTypes.Walking;
         }
     }
 
@@ -47,12 +53,16 @@ public class PlayerSprintCrouch : MonoBehaviour
             isCrouching = true;
             playerMovement.speed = crouchSpeed;
             povTransform.localPosition = new Vector3(0f, crouchHeight, 0f);
+
+            playerFootSteps.currentMovement = MovementTypes.Crouching;
         }
         if(Input.GetKeyUp(KeyCode.LeftControl))
         {
             isCrouching = false;
             playerMovement.speed = moveSpeed;
             povTransform.localPosition = new Vector3(0f, standHeight, 0f);
+
+            playerFootSteps.currentMovement = MovementTypes.Walking;
         }
     }
 }

@@ -13,3 +13,10 @@ public class MouseAxis
     public const string MOUSE_X = "Mouse X";
     public const string MOUSE_Y = "Mouse Y";
 }
+
+public enum MovementTypes
+{
+    Sprinting,
+    Walking,
+    Crouching
+}
