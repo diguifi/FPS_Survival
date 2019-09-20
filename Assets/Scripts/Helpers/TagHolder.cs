@@ -14,6 +14,11 @@ public class MouseAxis
     public const string MOUSE_Y = "Mouse Y";
 }
 
+public class AnimationTags
+{
+    public const string SHOOT_TRIGGER = "Shoot";
+}
+
 public enum MovementTypes
 {
     Sprinting,
