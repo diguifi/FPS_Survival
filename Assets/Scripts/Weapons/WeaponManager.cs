@@ -35,10 +35,17 @@ public class WeaponManager : MonoBehaviour
             weapons[index].gameObject.SetActive(true);
             currentWeaponIndex = index;
         }
+        else
+        {
+            weapons[currentWeaponIndex].gameObject.SetActive(false);
+            currentWeaponIndex = -1;
+        }
     }
 
     public WeaponHandler GetCurrentWeapon()
     {
-        return weapons[currentWeaponIndex];
+        if (currentWeaponIndex != -1)
+            return weapons[currentWeaponIndex];
+        return null;
     }
 }

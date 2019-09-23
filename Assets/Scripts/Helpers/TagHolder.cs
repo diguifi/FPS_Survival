@@ -17,6 +17,20 @@ public class MouseAxis
 public class AnimationTags
 {
     public const string SHOOT_TRIGGER = "Shoot";
+    public const string DRAW_STATE = "Draw";
+    public const string IDLE_STATE = "Idle";
+    public const string ATTACK_STATE = "Attack";
+    public const string ZOOM_IN = "ZoomIn";
+    public const string ZOOM_OUT = "ZoomOut";
+}
+
+public class Tags
+{
+    public const string AXE = "Axe";
+    public const string CROSSHAIR = "Crosshair";
+    public const string POV = "POV";
+    public const string ZOOM_CAMERA = "FPCamera";
+    public const string MAIN_CAMERA = "Main Camera";
 }
 
 public enum MovementTypes

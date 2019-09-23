@@ -32,7 +32,8 @@ public class WeaponHandler : MonoBehaviour
     
     public void ShootAnimation()
     {
-        animator.SetTrigger(AnimationTags.SHOOT_TRIGGER);
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName(AnimationTags.ATTACK_STATE))
+            animator.SetTrigger(AnimationTags.SHOOT_TRIGGER);
     }
 
     public void TurnOnMuzzleFlash()
