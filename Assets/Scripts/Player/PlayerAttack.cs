@@ -50,7 +50,7 @@ public class PlayerAttack : MonoBehaviour
             }
             if (weaponManager.GetCurrentWeapon().bulletType == WeaponBulletType.BULLET)
             {
-                // BulletFired();
+                BulletFired();
             }
             
             weaponManager.GetCurrentWeapon().ShootAnimation();
@@ -74,6 +74,16 @@ public class PlayerAttack : MonoBehaviour
                 zoomMainCameraAnim.Play(AnimationTags.ZOOM_OUT);
                 crosshair.SetActive(true);
             }
+        }
+    }
+
+    void BulletFired()
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit))
+        {
+            Debug.Log(hit.transform.gameObject.name);
         }
     }
 }

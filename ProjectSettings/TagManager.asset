@@ -8,6 +8,7 @@ TagManager:
   - Crosshair
   - POV
   - FPCamera
+  - Enemy
   layers:
   - Default
   - TransparentFX
