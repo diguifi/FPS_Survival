@@ -36,6 +36,12 @@ public class Tags
     public const string ZOOM_CAMERA = "FPCamera";
     public const string MAIN_CAMERA = "Main Camera";
     public const string PLAYER = "Player";
+    public const string ENEMY = "Enemy";
+}
+
+public class Scenes
+{
+    public const string GAME = "MainScene";
 }
 
 public enum MovementTypes
