@@ -13,6 +13,7 @@ public class Health : MonoBehaviour
 
     public bool isPlayer, isAnimal;
     private bool isDead;
+    private EnemySounds enemySounds;
 
     void Awake()
     {
@@ -21,6 +22,7 @@ public class Health : MonoBehaviour
             enemyAnimator = GetComponent<EnemyAnimator>();
             enemyController = GetComponent<EnemyController>();
             navMeshAgent = GetComponent<NavMeshAgent>();
+            enemySounds = GetComponentInChildren<EnemySounds>();
         }
         if (isPlayer)
         {
@@ -63,6 +65,8 @@ public class Health : MonoBehaviour
             enemyController.enabled = false;
             enemyAnimator.Dead();
 
+            StartCoroutine(DeadSound());
+
             Invoke("TurnOffGameObject", 3f);
         }
         if (isPlayer)
@@ -90,5 +94,11 @@ public class Health : MonoBehaviour
     void TurnOffGameObject()
     {
         gameObject.SetActive(false);
+    }
+
+    IEnumerator DeadSound()
+    {
+        yield return new WaitForSeconds(0.3f);
+        enemySounds.PlayDieSound();
     }
 }
