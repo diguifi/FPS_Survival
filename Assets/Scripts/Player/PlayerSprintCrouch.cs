@@ -19,6 +19,9 @@ public class PlayerSprintCrouch : MonoBehaviour
     private PlayerStats playerStats;
     private float sprintValue = 100f;
     public float sprintTreshold = 15f;
+
+    private bool isMoving = false;
+    private Vector3 current, lastPos;
     
     void Awake()
     {
@@ -31,8 +34,19 @@ public class PlayerSprintCrouch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckMovement();
         CheckCrouch();
         CheckSprint();
+    }
+
+    void CheckMovement()
+    {
+        var velocity = ((transform.position - lastPos).magnitude) / Time.deltaTime;
+        lastPos = transform.position;
+        if (velocity > 0f)
+            isMoving = true;
+        else
+            isMoving = false;
     }
 
     void CheckSprint()
@@ -53,9 +67,8 @@ public class PlayerSprintCrouch : MonoBehaviour
             playerFootSteps.currentMovement = MovementTypes.Walking;
         }
 
-        if(Input.GetKey(KeyCode.LeftShift) && !isCrouching)
+        if(Input.GetKey(KeyCode.LeftShift) && !isCrouching && isMoving)
         {
-            
             sprintValue -= Time.deltaTime * sprintTreshold;
             if (sprintValue < 0f)
             {
