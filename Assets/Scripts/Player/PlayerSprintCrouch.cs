@@ -15,12 +15,17 @@ public class PlayerSprintCrouch : MonoBehaviour
     public float crouchSpeed = 1.5f;
 
     private PlayerFootSteps playerFootSteps;
+
+    private PlayerStats playerStats;
+    private float sprintValue = 100f;
+    public float sprintTreshold = 15f;
     
     void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
         playerFootSteps = GetComponentInChildren<PlayerFootSteps>();
         povTransform = transform.GetChild(0);
+        playerStats = GetComponent<PlayerStats>();
     }
 
     // Update is called once per frame
@@ -32,17 +37,46 @@ public class PlayerSprintCrouch : MonoBehaviour
 
     void CheckSprint()
     {
-        if(Input.GetKeyDown(KeyCode.LeftShift) && !isCrouching)
+        if (sprintValue > 0)
         {
-            playerMovement.speed = sprintSpeed;
+            if(Input.GetKeyDown(KeyCode.LeftShift) && !isCrouching)
+            {
+                playerMovement.speed = sprintSpeed;
 
-            playerFootSteps.currentMovement = MovementTypes.Sprinting;
+                playerFootSteps.currentMovement = MovementTypes.Sprinting;
+            }
         }
         if(Input.GetKeyUp(KeyCode.LeftShift) && !isCrouching)
         {
             playerMovement.speed = moveSpeed;
 
             playerFootSteps.currentMovement = MovementTypes.Walking;
+        }
+
+        if(Input.GetKey(KeyCode.LeftShift) && !isCrouching)
+        {
+            
+            sprintValue -= Time.deltaTime * sprintTreshold;
+            if (sprintValue < 0f)
+            {
+                sprintValue = 0f;
+                playerMovement.speed = moveSpeed;
+                playerFootSteps.currentMovement = MovementTypes.Walking;
+            }
+            playerStats.DisplayStaminaStats(sprintValue);
+        }
+        else
+        {
+            if (sprintValue != 100f)
+            {
+                sprintValue += (sprintTreshold / 2) * Time.deltaTime;
+                playerStats.DisplayStaminaStats(sprintValue);
+
+                if (sprintValue > 100f)
+                {
+                    sprintValue = 100f;
+                }
+            }
         }
     }
 

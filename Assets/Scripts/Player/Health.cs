@@ -15,6 +15,8 @@ public class Health : MonoBehaviour
     private bool isDead;
     private EnemySounds enemySounds;
 
+    private PlayerStats playerStats;
+
     void Awake()
     {
         if (isAnimal)
@@ -26,7 +28,7 @@ public class Health : MonoBehaviour
         }
         if (isPlayer)
         {
-            // etc
+            playerStats = GetComponent<PlayerStats>();
         }
     }
 
@@ -38,7 +40,7 @@ public class Health : MonoBehaviour
 
             if (isPlayer)
             {
-                // update stats
+                playerStats.DisplayHealthStats(health);
             }
             if (isAnimal)
             {
