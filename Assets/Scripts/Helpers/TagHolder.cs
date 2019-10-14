@@ -44,6 +44,11 @@ public class Scenes
     public const string GAME = "MainScene";
 }
 
+public enum Enemies
+{
+    Boar
+}
+
 public enum MovementTypes
 {
     Sprinting,

@@ -70,6 +70,8 @@ public class Health : MonoBehaviour
             StartCoroutine(DeadSound());
 
             Invoke("TurnOffGameObject", 3f);
+
+            EnemyManager.instance.EnemyDied(Enemies.Boar);
         }
         if (isPlayer)
         {
@@ -83,6 +85,8 @@ public class Health : MonoBehaviour
             GetComponent<PlayerMovement>().enabled = false;
             GetComponent<PlayerAttack>().enabled = false;
             GetComponent<WeaponManager>().GetCurrentWeapon().gameObject.SetActive(false);
+
+            EnemyManager.instance.StopSpawning();
 
             Invoke("RestartGame", 3f);
         }
