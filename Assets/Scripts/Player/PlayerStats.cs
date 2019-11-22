@@ -7,6 +7,10 @@ public class PlayerStats : MonoBehaviour
 {
     [SerializeField]
     private Image healthStats, staminaStats;
+    [SerializeField]
+    private Text points;
+    [SerializeField]
+    private DayNightManager dayNightManager;
 
     public void DisplayHealthStats(float healthValue)
     {
@@ -18,5 +22,11 @@ public class PlayerStats : MonoBehaviour
     {
         staminaValue /= 100f;
         staminaStats.fillAmount = staminaValue;
+    }
+
+    public void DisplayPoints()
+    {
+        points.gameObject.SetActive(true);
+        points.text = $"Survived {dayNightManager.dayNumber} days";
     }
 }

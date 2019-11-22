@@ -75,6 +75,8 @@ public class Health : MonoBehaviour
         }
         if (isPlayer)
         {
+            playerStats.DisplayPoints();
+
             GameObject[] enemies = GameObject.FindGameObjectsWithTag(Tags.ENEMY);
 
             foreach(var enemy in enemies)
