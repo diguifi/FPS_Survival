@@ -50,7 +50,8 @@ public class PlayerAttack : MonoBehaviour
             }
             if (weaponManager.GetCurrentWeapon().bulletType == WeaponBulletType.BULLET)
             {
-                BulletFired();
+                if (!weaponManager.GetCurrentWeapon().ShootAnimationIsPlaying())
+                    BulletFired();
             }
             
             weaponManager.GetCurrentWeapon().ShootAnimation();

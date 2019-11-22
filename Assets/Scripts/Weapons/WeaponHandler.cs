@@ -29,6 +29,11 @@ public class WeaponHandler : MonoBehaviour
     {
         animator = GetComponent<Animator>();
     }
+
+    public bool ShootAnimationIsPlaying()
+    {
+        return animator.GetCurrentAnimatorStateInfo(0).IsName(AnimationTags.ATTACK_STATE);
+    }
     
     public void ShootAnimation()
     {
