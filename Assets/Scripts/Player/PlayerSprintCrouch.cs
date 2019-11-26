@@ -56,14 +56,17 @@ public class PlayerSprintCrouch : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.LeftShift) && !isCrouching)
             {
                 playerMovement.speed = sprintSpeed;
-
                 playerFootSteps.currentMovement = MovementTypes.Sprinting;
+                if(Input.GetAxis(Axis.VERTICAL) < 0)
+                {
+                    playerMovement.speed = sprintSpeed/1.4f;
+                }
+                
             }
         }
         if(Input.GetKeyUp(KeyCode.LeftShift) && !isCrouching)
         {
             playerMovement.speed = moveSpeed;
-
             playerFootSteps.currentMovement = MovementTypes.Walking;
         }
 
