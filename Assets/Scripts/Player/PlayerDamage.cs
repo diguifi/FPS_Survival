@@ -15,7 +15,7 @@ public class PlayerDamage : MonoBehaviour
 
     public void TakeDamage()
     {
-        damageSound.volume = Random.Range(0.2f, 0.4f);
+        damageSound.volume = Random.Range(0.3f, 0.6f);
         damageSound.clip = damageClip[Random.Range(0, damageClip.Length)];
         damageSound.Play();
     }

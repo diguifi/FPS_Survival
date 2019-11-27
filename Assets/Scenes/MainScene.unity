@@ -1820,6 +1820,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1258160426709607560, guid: 3c9bc70b68f743c47b8bb5b29ea43611,
+        type: 3}
+      propertyPath: m_Name
+      value: DamageSoundManager
+      objectReference: {fileID: 0}
     - target: {fileID: 1685156111042690109, guid: 3c9bc70b68f743c47b8bb5b29ea43611,
         type: 3}
       propertyPath: m_Name
@@ -1915,10 +1920,15 @@ PrefabInstance:
       propertyPath: playerDamageSoundManager
       value: 
       objectReference: {fileID: 1315904504}
+    - target: {fileID: 1685156111042690111, guid: 3c9bc70b68f743c47b8bb5b29ea43611,
+        type: 3}
+      propertyPath: playerDamageSoundManager
+      value: 
+      objectReference: {fileID: 1315904504}
     - target: {fileID: 1685156109148814192, guid: 3c9bc70b68f743c47b8bb5b29ea43611,
         type: 3}
       propertyPath: m_Name
-      value: FootstepsSound
+      value: FootstepsSoundManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c9bc70b68f743c47b8bb5b29ea43611, type: 3}
