@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     private float verticalVelocity;
     private float gravity = 20f;
     private float timeFalling = 0f;
+    [SerializeField]
+    private PlayerDamage playerDamageSoundManager;
     public float speed = 4f;
     public float jumpForce = 10f;
 
@@ -61,7 +63,10 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             if (timeFalling > 1.3f)
+            {
                 healthManager.DealDamage((timeFalling * timeFalling) * 2);
+                playerDamageSoundManager.TakeDamage();
+            }
             timeFalling = 0f;
         }
     }
