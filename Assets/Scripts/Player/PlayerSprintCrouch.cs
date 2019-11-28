@@ -27,7 +27,6 @@ public class PlayerSprintCrouch : MonoBehaviour
     {
         playerMovement = GetComponent<PlayerMovement>();
         playerSoundManager = GetComponentInChildren<PlayerSoundManager>();
-        Debug.Log(playerSoundManager.footStepsSoundManager);
         povTransform = transform.GetChild(0);
         playerStats = GetComponent<PlayerStats>();
     }
@@ -73,9 +72,14 @@ public class PlayerSprintCrouch : MonoBehaviour
 
         if(Input.GetKey(KeyCode.LeftShift) && !isCrouching && isMoving)
         {
+            if (sprintValue > 0f)
+                playerSoundManager.breathSoundManager.RunTired(sprintValue);
+                
             sprintValue -= Time.deltaTime * sprintTreshold;
             if (sprintValue < 0f)
             {
+                playerSoundManager.breathSoundManager.Recover(sprintValue);
+
                 sprintValue = 0f;
                 playerMovement.speed = moveSpeed;
                 playerSoundManager.footStepsSoundManager.currentMovement = MovementTypes.Walking;
@@ -86,6 +90,8 @@ public class PlayerSprintCrouch : MonoBehaviour
         {
             if (sprintValue != 100f)
             {
+                playerSoundManager.breathSoundManager.Recover(sprintValue);
+
                 sprintValue += (sprintTreshold / 2) * Time.deltaTime;
                 playerStats.DisplayStaminaStats(sprintValue);
 
