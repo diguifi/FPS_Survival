@@ -14,7 +14,7 @@ public class PlayerSprintCrouch : MonoBehaviour
     public float sprintSpeed = 8f;
     public float crouchSpeed = 1.5f;
 
-    private PlayerFootSteps playerFootSteps;
+    private PlayerSoundManager playerSoundManager;
 
     private PlayerStats playerStats;
     private float sprintValue = 100f;
@@ -26,7 +26,8 @@ public class PlayerSprintCrouch : MonoBehaviour
     void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
-        playerFootSteps = GetComponentInChildren<PlayerFootSteps>();
+        playerSoundManager = GetComponentInChildren<PlayerSoundManager>();
+        Debug.Log(playerSoundManager.footStepsSoundManager);
         povTransform = transform.GetChild(0);
         playerStats = GetComponent<PlayerStats>();
     }
@@ -56,7 +57,7 @@ public class PlayerSprintCrouch : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.LeftShift) && !isCrouching)
             {
                 playerMovement.speed = sprintSpeed;
-                playerFootSteps.currentMovement = MovementTypes.Sprinting;
+                playerSoundManager.footStepsSoundManager.currentMovement = MovementTypes.Sprinting;
                 if(Input.GetAxis(Axis.VERTICAL) < 0)
                 {
                     playerMovement.speed = sprintSpeed/1.4f;
@@ -67,7 +68,7 @@ public class PlayerSprintCrouch : MonoBehaviour
         if(Input.GetKeyUp(KeyCode.LeftShift) && !isCrouching)
         {
             playerMovement.speed = moveSpeed;
-            playerFootSteps.currentMovement = MovementTypes.Walking;
+            playerSoundManager.footStepsSoundManager.currentMovement = MovementTypes.Walking;
         }
 
         if(Input.GetKey(KeyCode.LeftShift) && !isCrouching && isMoving)
@@ -77,7 +78,7 @@ public class PlayerSprintCrouch : MonoBehaviour
             {
                 sprintValue = 0f;
                 playerMovement.speed = moveSpeed;
-                playerFootSteps.currentMovement = MovementTypes.Walking;
+                playerSoundManager.footStepsSoundManager.currentMovement = MovementTypes.Walking;
             }
             playerStats.DisplayStaminaStats(sprintValue);
         }
@@ -104,7 +105,7 @@ public class PlayerSprintCrouch : MonoBehaviour
             playerMovement.speed = crouchSpeed;
             povTransform.localPosition = new Vector3(0f, crouchHeight, 0f);
 
-            playerFootSteps.currentMovement = MovementTypes.Crouching;
+            playerSoundManager.footStepsSoundManager.currentMovement = MovementTypes.Crouching;
         }
         if(Input.GetKeyUp(KeyCode.LeftControl))
         {
@@ -112,7 +113,7 @@ public class PlayerSprintCrouch : MonoBehaviour
             playerMovement.speed = moveSpeed;
             povTransform.localPosition = new Vector3(0f, standHeight, 0f);
 
-            playerFootSteps.currentMovement = MovementTypes.Walking;
+            playerSoundManager.footStepsSoundManager.currentMovement = MovementTypes.Walking;
         }
     }
 }

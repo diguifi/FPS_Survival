@@ -9,7 +9,7 @@ public class Health : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     private EnemyController enemyController;
     [SerializeField]
-    private PlayerDamage playerDamageSoundManager;
+    private PlayerSoundManager playerSoundManager;
 
     public float health = 100f;
 
@@ -43,7 +43,7 @@ public class Health : MonoBehaviour
             if (isPlayer)
             {
                 playerStats.DisplayHealthStats(health);
-                playerDamageSoundManager.TakeDamage();
+                playerSoundManager.damageSoundManager.TakeDamage();
             }
             if (isAnimal)
             {
