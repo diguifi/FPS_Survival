@@ -89,7 +89,8 @@ public class Health : MonoBehaviour
 
             GetComponent<PlayerMovement>().enabled = false;
             GetComponent<PlayerAttack>().enabled = false;
-            GetComponent<WeaponManager>().GetCurrentWeapon().gameObject.SetActive(false);
+            if (GetComponent<WeaponManager>().GetCurrentWeapon() != null)
+                GetComponent<WeaponManager>().GetCurrentWeapon().gameObject.SetActive(false);
 
             EnemyManager.instance.StopSpawning();
 
