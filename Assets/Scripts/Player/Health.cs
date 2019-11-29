@@ -10,6 +10,8 @@ public class Health : MonoBehaviour
     private EnemyController enemyController;
     [SerializeField]
     private PlayerSoundManager playerSoundManager;
+    [SerializeField]
+    private DamageOverlayManager damageOverlay;
 
     public float health = 100f;
 
@@ -42,6 +44,7 @@ public class Health : MonoBehaviour
 
             if (isPlayer)
             {
+                damageOverlay.UpdateDamageOverlay(health);
                 playerStats.DisplayHealthStats(health);
                 playerSoundManager.damageSoundManager.TakeDamage();
             }
