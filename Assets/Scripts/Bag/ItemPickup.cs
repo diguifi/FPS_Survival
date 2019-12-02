@@ -10,11 +10,15 @@ public class ItemPickup : Interactable
     {
         base.Interact();
         Pickup();
-        Destroy(gameObject);
     }
 
     public void Pickup()
     {
-        Debug.Log($"Picked up {item.name}");
+        if (Bag.instance.Fits())
+        {
+            Debug.Log($"Picked up {item.name}");
+            Bag.instance.Add(item);
+            Destroy(gameObject);
+        }
     }
 }
