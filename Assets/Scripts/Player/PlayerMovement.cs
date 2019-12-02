@@ -70,4 +70,13 @@ public class PlayerMovement : MonoBehaviour
             timeFalling = 0f;
         }
     }
+
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        var interactable = hit.gameObject.GetComponent<Interactable>();
+        if (interactable != null)
+        {
+            interactable.HasCollided(transform);
+        }
+    }
 }
