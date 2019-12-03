@@ -11,7 +11,7 @@ public class MouseLook : MonoBehaviour
     [SerializeField]
     private bool canUnlock = true;
     [SerializeField]
-    private float sensitivity = 5f;
+    private float sensitivity = 2f;
     [SerializeField]
     private int smoothSteps = 10;
     [SerializeField]
@@ -43,7 +43,7 @@ public class MouseLook : MonoBehaviour
 
     void LockAndUnlockCursor()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Bag"))
         {
             if(Cursor.lockState == CursorLockMode.Locked)
             {

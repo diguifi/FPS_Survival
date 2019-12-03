@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: MeatItem
   m_EditorClassIdentifier: 
   name: Meat
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 800fc865475f06b4fa68f236265d7de6, type: 3}
