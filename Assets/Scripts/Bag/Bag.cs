@@ -36,7 +36,14 @@ public class Bag : MonoBehaviour
 
     public void Remove (Item item)
     {
-        items.Remove(item);
+        if (items.Count > 0)
+        {
+            items.Remove(item);
+
+            if (onItemChangedCallback != null)
+                onItemChangedCallback.Invoke();
+        }
+        
     }
 
     public bool Fits()
