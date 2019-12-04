@@ -24,6 +24,10 @@ public class BagUI : MonoBehaviour
         if (Input.GetButtonDown("Bag"))
         {
             bagUI.SetActive(!bagUI.activeSelf);
+
+            if(Cursor.lockState == CursorLockMode.None) {
+                bagUI.SetActive(true);
+            }
         }
     }
 
